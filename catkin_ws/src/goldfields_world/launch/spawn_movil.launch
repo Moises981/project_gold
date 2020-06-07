@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+	    <!--Overwriting these args-->
+	    <arg name="x" default="6.0" />
+	    <arg name="y" default="15.0" />
+	    <arg name="z" default="-2.0" />
+
+    <!--Include gazebo_ros launcher-->
+    <arg name="model_mov" default="$(find goldfields_world)/urdf/robot_mov.urdf"/>
+    <param name="robot_description" command="cat $(arg model_mov)"/>
+
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-urdf -model robot_mov -x $(arg x) -y $(arg y) -z $(arg z) -param robot_description"/>
+
+
+    <rosparam file="$(find goldfields_world)/controller_config/joint_states.yaml" command="load"/>
+
+    <rosparam file="$(find goldfields_world)/controller_config/diff_drive.yaml" command="load"/>
+
+    <node name="controller_manager" pkg="controller_manager" type="spawner"
+    respawn="false" output="screen" ns="/robot_mov"
+    args="
+    diff_drive_controller
+    pala_position_controller
+    arm_position_controlller     
+    joint_state_controller
+        "/>
+
+
+
+</launch>

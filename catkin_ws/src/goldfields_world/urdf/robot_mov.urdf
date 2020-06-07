@@ -1,0 +1,649 @@
+<?xml version="1.0"?>
+<robot name="robot_mov">
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/robot_mov</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+    </gazebo>
+
+    <link name="base_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="base_joint" type="fixed">
+        <origin xyz="0.0 0.5 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="body_link"/>
+    </joint>
+
+
+
+
+<!--####Body####-->
+
+    <link name="body_link">
+         <inertial>
+            <mass value="5.0"/>
+            <inertia ixx="3.02083333333" ixy="0.0" ixz="0.0" iyy="3.02083333333" iyz="0.0" izz="5.20833333333"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Body_yellow.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.1 0.1 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+
+<!--####Base_Wheels####-->
+
+    <joint name="body_base_1_joint" type="fixed">
+        <origin xyz="0.0 1.45 0.15" rpy="-1.5708 -3.14 0.0"/>
+        <parent link="body_link"/>
+        <child link="base_wheels_link_1"/>
+    </joint>
+
+    <link name="base_wheels_link_1" >
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Support.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+    </link>
+
+<!--####Tornillo_base_Wheel####-->
+
+    <link name="Tornillo_base_wheel_1">
+        <visual>
+            <origin xyz="0.0 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Tornillo_S.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="base_Wheel_Tornillo_1" type="fixed">
+        <origin xyz="0.0 0.1 -0.175" rpy="1.5708 0.0 0.0"/>
+        <parent link="base_wheels_link_1"/>
+        <child link="Tornillo_base_wheel_1"/>
+    </joint>
+
+<!--####Barra####-->
+
+    <link name="Barra_1_link" >
+         <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+                <mass value="2"/>
+                <inertia ixx="0.965" ixy="0.0" ixz="0.0" iyy="0.965" iyz="0.0" izz="0.01"/>
+        </inertial>
+        <visual>
+            <origin xyz="-1.2 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Barra.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+            <cylinder radius="0.125" length="2.4"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_Wheel_Barra_1" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
+        <parent link="base_wheels_link_1"/>
+        <child link="Barra_1_link"/>
+    </joint>
+
+<!--####Ruedas de atras -Izquierda####-->
+
+    <link name="left_back_wheel">
+         <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+                <mass value="0.5"/>
+                <inertia ixx="0.0319791666667" ixy="0.0" ixz="0.0" iyy="0.0319791666667" iyz="0.0" izz="0.050625"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Wheel_rin_yellow.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.425" length="0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="left_back_wheel_joint" type="continuous">
+        <origin xyz="-1.25 0.0 0.0" rpy="0.0 3.1415922654 0.0"/>
+        <parent link="Barra_1_link"/>
+        <child link="left_back_wheel"/>
+        <axis xyz="1.0 0.0 0.0"/>   
+    </joint>
+
+    <link name="WheelB_1_link" >
+        <visual name="">
+            <origin xyz="-0.05 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Wheel_black.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="-0.05 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.85" length="0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="wheel_base_rin_B1" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="left_back_wheel"/>
+        <child link="WheelB_1_link"/>
+        <limit effort="100" velocity="100"/>
+        <dynamics damping="0.0" friction="0.0"/>   
+    </joint>
+
+<!--####Ruedas de atras -Derecha####-->
+
+<link name="right_back_wheel">
+         <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+                <mass value="0.5"/>
+                <inertia ixx="0.0319791666667" ixy="0.0" ixz="0.0" iyy="0.0319791666667" iyz="0.0" izz="0.050625"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0" rpy="0.0 0.0 3.1415922654"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Wheel_rin_yellow.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.425" length="0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_back_wheel_joint" type="continuous">
+        <origin xyz="1.25 0.0 0.0" rpy="0.0 0.0 3.141592"/>
+        <parent link="Barra_1_link"/>
+        <child link="right_back_wheel"/>
+        <axis xyz="1.0 0.0 0.0"/>   
+    </joint>
+
+    <link name="WheelA_1_link" >
+        <visual>
+            <origin xyz="0.05 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Wheel_black.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.05 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.85" length="0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="wheel_base_rin_A1" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="right_back_wheel"/>
+        <child link="WheelA_1_link"/>
+        <limit effort="100" velocity="100"/>
+        <dynamics damping="0.0" friction="0.0"/>   
+    </joint>
+
+<!--BASE DEL CARGADOR FRONTAL-->
+
+    <link name="Loader_base">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.2"/>
+            <inertia ixx="13.3333333333" ixy="0.0" ixz="0.0" iyy="13.3333333333" iyz="0.0" izz="13.3333333333"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Helmet.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.1 0.1 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="helmet_joint" type="fixed">
+        <origin xyz="0.0 -2.5 0.1" rpy="0.0 0.0 0.0"/>
+        <parent link="body_link"/>
+        <child link="Loader_base"/>
+        <axis xyz="0.0 0.0 0.0"/>
+    </joint>
+
+<!---RUEDAS FRONTALES DEL CARGADOR-->
+
+    <link name="base_wheels_link_2" >
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Support.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="body_base_2_joint" type="fixed">
+        <origin xyz="0.0 -2.3 0.15" rpy="1.5708 -3.14 0.0"/>
+        <parent link="body_link"/>
+        <child link="base_wheels_link_2"/>
+        <axis xyz="0.0 0.0 0.0"/>
+    </joint>
+
+    <link name="Tornillo_base_wheel_2" >
+        <visual>
+            <origin xyz="0.0 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Tornillo_S.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+    </link>
+
+
+    <joint name="base_Wheel_Tornillo_2" type="fixed">
+        <origin xyz="0.0 0.1 -0.175" rpy="1.5708 0.0 0.0"/>
+        <parent link="base_wheels_link_2"/>
+        <child link="Tornillo_base_wheel_2"/>
+    </joint>
+
+    <link name="Barra_2_link" >
+         <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+                <mass value="2"/>
+                <inertia ixx="0.965" ixy="0.0" ixz="0.0" iyy="0.965" iyz="0.0" izz="0.01"/>
+        </inertial>
+        <visual>
+            <origin xyz="-1.2 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Barra.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+            <cylinder radius="0.125" length="2.4"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_Wheel_Barra_2" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
+        <parent link="base_wheels_link_2"/>
+        <child link="Barra_2_link"/>
+    </joint>
+
+<!--####Ruedas de adelante -Derecha####-->
+
+    <link name="right_front_wheel">
+         <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+                <mass value="0.5"/>
+                <inertia ixx="0.0319791666667" ixy="0.0" ixz="0.0" iyy="0.0319791666667" iyz="0.0" izz="0.050625"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0" rpy="0.0 0.0 3.1415922654"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Wheel_rin_yellow.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.425" length="0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_front_wheel_joint" type="continuous">
+        <origin xyz="1.25 0.0 0.0" rpy="0.0 0.0 3.1415922654"/>
+        <parent link="Barra_2_link"/>
+        <child link="right_front_wheel"/>
+        <axis xyz="1.0 0.0 0.0"/>   
+    </joint>
+
+    <link name="WheelA_2_link" >
+        <visual name="">
+            <origin xyz="0.05 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Wheel_black.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.05 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.85" length="0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="wheel_base_rin_A2" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="right_front_wheel"/>
+        <child link="WheelA_2_link"/>
+        <limit effort="100" velocity="100"/>
+        <dynamics damping="0.0" friction="0.0"/>   
+    </joint>
+
+<!--####Ruedas de adelante -Izquierda####-->
+
+    <link name="left_front_wheel">
+         <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+                <mass value="0.5"/>
+                <inertia ixx="0.0319791666667" ixy="0.0" ixz="0.0" iyy="0.0319791666667" iyz="0.0" izz="0.050625"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Wheel_rin_yellow.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.425" length="0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="left_front_wheel_joint" type="continuous">
+        <origin xyz="-1.25 0.0 0.0" rpy="0.0 3.1415922654 0.0"/>
+        <parent link="Barra_2_link"/>
+        <child link="left_front_wheel"/>
+        <axis xyz="1.0 0.0 0.0"/>   
+    </joint>
+
+    <link name="WheelB_2_link" >
+        <visual name="">
+            <origin xyz="-0.05 0.0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Wheel_black.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="-0.05 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.85" length="0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="wheel_base_rin_B2" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="left_front_wheel"/>
+        <child link="WheelB_2_link"/>
+        <limit effort="100" velocity="100"/>
+        <dynamics damping="0.0" friction="0.0"/>   
+    </joint>
+
+    <!--SOPORTE DEL CARGADOR-->
+    
+    <link name="Tornillo_Little_A1" >
+        <visual name="">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Tornillo_Little.dae" scale="40 30 40"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="tornilloA1_supp_joint" type="fixed">
+        <origin xyz="-0.55 1.475 2.34" rpy="0.0 01.0 1.5708"/>
+        <parent link="Loader_base"/>
+        <child link="Tornillo_Little_A1"/>
+    </joint>
+
+    <link name="Tornillo_Little_A2" >
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Tornillo_Little.dae" scale="40 30 40"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="tornilloA2_supp_joint" type="fixed">
+        <origin xyz="0.55 1.475 2.34" rpy="0.0 1.0 -1.5708"/>
+        <parent link="Loader_base"/>
+        <child link="Tornillo_Little_A2"/>
+    </joint>
+
+    <link name="pala_support_link" >
+        <inertial>
+            <origin xyz="0.0 1.5 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="5.0"/>
+            <inertia ixx="1.29270833333" ixy="0.0" ixz="0.0" iyy="0.667708333333" iyz="0.0" izz="1.92708333333"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Support_Pala_Yellow.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 1.5 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="1.25 1.75 0.2"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_support_pala" type="revolute">
+        <origin xyz="0.0 1.475 2.34" rpy="2.5 3.1415922654 0.0"/>
+        <parent link="Loader_base"/>
+        <child link="pala_support_link"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="0.0" upper="1.5" effort="100.0" velocity="100"/>
+    </joint>
+
+
+    <link name="Tornillo_Little_B1" >
+        <visual name="">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Tornillo_Little.dae" scale="40 30 40"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="tornilloB1_supp_joint" type="fixed">
+        <origin xyz="0.57 3.075 -0.35" rpy="0.0 0.0 -1.5708"/>
+        <parent link="pala_support_link"/>
+        <child link="Tornillo_Little_B1"/>
+    </joint>
+
+    <link name="Tornillo_Little_B2" >
+        <visual name="">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Tornillo_Little.dae" scale="40 30 40"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="tornilloB2_supp_joint" type="fixed">
+        <origin xyz="-0.57 3.075 -0.35" rpy="0.0 0.0 1.5708"/>
+        <parent link="pala_support_link"/>
+        <child link="Tornillo_Little_B2"/>
+    </joint>
+
+
+    <link name="pala_link" >
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.1"/>
+            <inertia ixx="0.0008125" ixy="0.0" ixz="0.0" iyy="0.0008125" iyz="0.0" izz="0.000125"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.05 1.11" rpy="0.0 0.0 3.1415922654"/>
+            <geometry>
+                <mesh filename="package://goldfields_world/models/Front_Loader/meshes/Pala.dae" scale="40 40 40"/>
+            </geometry>
+        </visual>
+        <!--<collision>
+            <origin xyz="0.0 0.0 1.25" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="3.0 0.2 0.2"/>
+            </geometry>
+        </collision>-->
+    </link>
+
+    <joint name="pala_base_joint" type="revolute">
+        <origin xyz="0.0 3.075 -0.35" rpy="-0.75 0.0 0.0"/>
+        <parent link="pala_support_link"/>
+        <child link="pala_link"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-2.58" upper="0.6" effort="100.0" velocity="100"/>
+    </joint>
+
+
+
+
+
+
+
+    <gazebo reference="body_link">
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+
+    <gazebo reference="WheelB_1_link">
+        <mu1 value="400.0"/>
+        <mu2 value="200.0"/>
+        <kp value="10000000.0"/>
+        <kd value="1000.0"/>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="WheelB_2_link">
+        <mu1 value="400.0"/>
+        <mu2 value="200.0"/>
+        <kp value="10000000.0"/>
+        <kd value="1000.0"/>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="WheelA_1_link">
+        <mu1 value="400.0"/>
+        <mu2 value="200.0"/>
+        <kp value="10000000.0"/>
+        <kd value="1000.0"/>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="WheelA_2_link">
+        <mu1 value="400.0"/>
+        <mu2 value="200.0"/>
+        <kp value="10000000.0"/>
+        <kd value="1000.0"/>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+
+
+    <transmission name="left_back_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="left_back_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        </actuator>
+        <joint name="left_back_wheel_joint">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <transmission name="right_front_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="right_front_wheel_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+            <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        </actuator>
+        <joint name="right_front_wheel_joint">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <transmission name="right_back_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="right_back_wheel_motor">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="right_back_wheel_joint">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <transmission name="left_front_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="left_front_wheel_motor">
+            <hardwareInterface>VelocityJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="left_front_wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <transmission name="arm_position_controlller">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="supp_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="base_support_pala">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <transmission name="pala_position_controller">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="pala_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="pala_base_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+
+
+
+   
+
+
+
+
+
+    
+</robot>

@@ -1,0 +1,16 @@
+robot_mov:
+  joint_state_controller:
+    type: "joint_state_controller/JointStateController"
+    publish_rate: 50
+
+  # Position Controllers ---------------------------------------
+
+  arm_position_controlller:
+    type: effort_controllers/JointPositionController
+    joint: base_support_pala
+    pid: {p: 1000.0, i: 100.0, d: 500.0}   
+    
+  pala_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: pala_base_joint
+    pid: {p: 10.0, i: 0.0, d: 1.0}  
