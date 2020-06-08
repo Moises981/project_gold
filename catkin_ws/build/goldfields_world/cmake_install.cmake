@@ -1,8 +1,8 @@
-# Install script for directory: /home/rog-strix/project_gold/catkin_ws/src/goldfields_world
+# Install script for directory: /home/asus/project_gold/catkin_ws/src/goldfields_world
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/rog-strix/project_gold/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/asus/project_gold/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/rog-strix/project_gold/catkin_ws/build/goldfields_world/catkin_generated/installspace/goldfields_world.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/asus/project_gold/catkin_ws/build/goldfields_world/catkin_generated/installspace/goldfields_world.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/goldfields_world/cmake" TYPE FILE FILES
-    "/home/rog-strix/project_gold/catkin_ws/build/goldfields_world/catkin_generated/installspace/goldfields_worldConfig.cmake"
-    "/home/rog-strix/project_gold/catkin_ws/build/goldfields_world/catkin_generated/installspace/goldfields_worldConfig-version.cmake"
+    "/home/asus/project_gold/catkin_ws/build/goldfields_world/catkin_generated/installspace/goldfields_worldConfig.cmake"
+    "/home/asus/project_gold/catkin_ws/build/goldfields_world/catkin_generated/installspace/goldfields_worldConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/goldfields_world" TYPE FILE FILES "/home/rog-strix/project_gold/catkin_ws/src/goldfields_world/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/goldfields_world" TYPE FILE FILES "/home/asus/project_gold/catkin_ws/src/goldfields_world/package.xml")
 endif()
 

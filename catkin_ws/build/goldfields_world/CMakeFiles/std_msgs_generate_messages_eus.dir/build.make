@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rog-strix/project_gold/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/asus/project_gold/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rog-strix/project_gold/catkin_ws/build
+CMAKE_BINARY_DIR = /home/asus/project_gold/catkin_ws/build
 
 # Utility rule file for std_msgs_generate_messages_eus.
 
@@ -63,10 +63,10 @@ goldfields_world/CMakeFiles/std_msgs_generate_messages_eus.dir/build: std_msgs_g
 .PHONY : goldfields_world/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 
 goldfields_world/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
-	cd /home/rog-strix/project_gold/catkin_ws/build/goldfields_world && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_eus.dir/cmake_clean.cmake
+	cd /home/asus/project_gold/catkin_ws/build/goldfields_world && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_eus.dir/cmake_clean.cmake
 .PHONY : goldfields_world/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
 
 goldfields_world/CMakeFiles/std_msgs_generate_messages_eus.dir/depend:
-	cd /home/rog-strix/project_gold/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rog-strix/project_gold/catkin_ws/src /home/rog-strix/project_gold/catkin_ws/src/goldfields_world /home/rog-strix/project_gold/catkin_ws/build /home/rog-strix/project_gold/catkin_ws/build/goldfields_world /home/rog-strix/project_gold/catkin_ws/build/goldfields_world/CMakeFiles/std_msgs_generate_messages_eus.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/asus/project_gold/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/asus/project_gold/catkin_ws/src /home/asus/project_gold/catkin_ws/src/goldfields_world /home/asus/project_gold/catkin_ws/build /home/asus/project_gold/catkin_ws/build/goldfields_world /home/asus/project_gold/catkin_ws/build/goldfields_world/CMakeFiles/std_msgs_generate_messages_eus.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : goldfields_world/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
 

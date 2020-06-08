@@ -27,6 +27,8 @@
     joint_state_controller
         "/>
 
+    <node pkg="goldfields_world" type="move.py" name="Pose" />
+
 
 
 </launch>

@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/rog-strix/project_gold/catkin_ws/devel:$CMAKE_PREFIX_PATH"
-export PWD="/home/rog-strix/project_gold/catkin_ws/build"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/rog-strix/project_gold/catkin_ws/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/rog-strix/project_gold/catkin_ws/src:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/asus/project_gold/catkin_ws/devel:$CMAKE_PREFIX_PATH"
+export PWD="/home/asus/project_gold/catkin_ws/build"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/asus/project_gold/catkin_ws/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/asus/project_gold/catkin_ws/src:$ROS_PACKAGE_PATH"

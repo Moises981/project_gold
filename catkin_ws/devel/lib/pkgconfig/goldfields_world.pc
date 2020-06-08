@@ -1,4 +1,4 @@
-prefix=/home/rog-strix/project_gold/catkin_ws/devel
+prefix=/home/asus/project_gold/catkin_ws/devel
 
 Name: goldfields_world
 Description: Description of goldfields_world
