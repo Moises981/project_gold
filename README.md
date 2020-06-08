@@ -1,5 +1,5 @@
 # project_gold
-## Just run
-'''
+## First run the world and then just run:
+```bash
 roslaunch goldfields_world spawn_movil.launch
-'''
+```
